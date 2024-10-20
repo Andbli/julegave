@@ -13,43 +13,13 @@
             overflow: hidden; /* Prevent scrolling */
         }
 
-        .navbar {
-            background-color: #4CAF50; /* Green */
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 1.5em;
-            position: relative;
-        }
-
-        .refresh-button {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            background-color: white;
-            border: none;
-            color: #4CAF50;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 1em;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .refresh-button:hover {
-            background-color: #f1f1f1;
-            transform: scale(1.05);
-        }
-
         .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: calc(100% - 60px); /* Adjust height for the navbar */
+            height: 100%; /* Fill the full height */
             width: 100%;
             background-color: #f5f5f5;
-            position: relative;
         }
 
         iframe {
@@ -58,41 +28,17 @@
             border: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-            font-size: 1.2em;
-            color: #4CAF50;
-        }
-
-        @media (max-width: 600px) {
-            iframe {
-                height: 80vh; /* Adjust iframe height for mobile */
-            }
-        }
     </style>
-</head>
-<body>
-    <div class="navbar">
-        Collaborative Document
-        <button class="refresh-button" onclick="refreshDocument()">Refresh</button>
-    </div>
-    <div class="container">
-        <span class="loading" id="loading">Loading document...</span>
-        <iframe id="doc-frame" src="https://docs.google.com/document/d/1KTh23OcGHxhrR4qTciPAhuFA3LZkWjDh663Gww0W-pI/edit?usp=sharing" onload="document.getElementById('loading').style.display='none';"></iframe>
-    </div>
-
     <script>
-        function refreshDocument() {
-            const iframe = document.getElementById('doc-frame');
-            const loadingIndicator = document.getElementById('loading');
-            loadingIndicator.style.display = 'block'; // Show loading indicator
-            iframe.src = iframe.src; // Reload the iframe
+        // Redirect mobile users
+        if (window.innerWidth <= 600) {
+            window.location.href = "https://docs.google.com/document/d/1KTh23OcGHxhrR4qTciPAhuFA3LZkWjDh663Gww0W-pI/edit?usp=sharing";
         }
     </script>
+</head>
+<body>
+    <div class="container">
+        <iframe src="https://docs.google.com/document/d/1KTh23OcGHxhrR4qTciPAhuFA3LZkWjDh663Gww0W-pI/edit?usp=sharing"></iframe>
+    </div>
 </body>
 </html>
